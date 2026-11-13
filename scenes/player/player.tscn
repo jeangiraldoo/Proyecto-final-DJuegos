@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bfg8xl8ctd83i"]
+
+[ext_resource type="Script" uid="uid://ceemviw4w3ndv" path="res://scenes/player/player.gd" id="1_player"]
+
+[sub_resource type="StandardMaterial3D" id="Material_player"]
+albedo_color = Color(0.2, 0.4, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_player"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape_player"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="Material_gun"]
+albedo_color = Color(0.1, 0.1, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gun"]
+size = Vector3(0.12, 0.12, 0.6)
+
+[node name="Player" type="CharacterBody3D" unique_id=1407519118]
+script = ExtResource("1_player")
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=536103175]
+material_override = SubResource("Material_player")
+mesh = SubResource("CapsuleMesh_player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2051348959]
+shape = SubResource("CapsuleShape_player")
+
+[node name="Head" type="Node3D" parent="." unique_id=1234914207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1284489163]
+current = true
+
+[node name="Gun" type="MeshInstance3D" parent="Head/Camera3D" unique_id=1194372937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.25, -0.5)
+material_override = SubResource("Material_gun")
+mesh = SubResource("BoxMesh_gun")
